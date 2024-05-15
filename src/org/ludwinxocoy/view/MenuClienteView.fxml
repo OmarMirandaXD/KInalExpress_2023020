@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="734.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ludwinxocoy.controller.MenuClienteController">
+   <children>
+      <ImageView fitHeight="734.0" fitWidth="876.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/FondoClientes.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="19.0" layoutY="238.0" prefHeight="164.0" prefWidth="104.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="104.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <TableView fx:id="tblClientes" layoutX="103.0" layoutY="360.0" prefHeight="314.0" prefWidth="669.0" stylesheets="@../resource/KinalExpresCSS.css">
+        <columns>
+          <TableColumn fx:id="colClienteC" prefWidth="75.0" text="clienteID" />
+          <TableColumn fx:id="colNombreC" prefWidth="97.0" text="nombreClientes" />
+            <TableColumn fx:id="colApellidoC" prefWidth="105.0" text="apellidoClientes" />
+            <TableColumn fx:id="colNitC" text="nitClientes" />
+            <TableColumn fx:id="colTelefonoC" minWidth="8.0" prefWidth="99.0" text="telefonoCliente" />
+            <TableColumn fx:id="colDireccionC" minWidth="6.0" prefWidth="106.0" text="direccionClientes" />
+            <TableColumn fx:id="colCorreoC" prefWidth="108.0" text="correoClientes" />
+        </columns>
+      </TableView>
+      <GridPane fx:id="txtCodigoC" layoutX="222.0" layoutY="126.0" prefHeight="100.0" prefWidth="210.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="90.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="16.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="130.0" text="Nombre" textFill="#115122" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bauhaus 93" size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="120.0" text="Apellido" textFill="#115122" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Bauhaus 93" size="19.0" />
+               </font></Label>
+            <TextField fx:id="txtIdCliente" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="223.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtApellido" prefHeight="18.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="119.0" text="ID" textFill="#115122">
+               <font>
+                  <Font name="Bauhaus 93" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane layoutX="461.0" layoutY="113.0" prefHeight="125.0" prefWidth="165.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="62.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="2.0" prefWidth="28.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCorreo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtNit" GridPane.columnIndex="1" />
+            <TextField fx:id="txtDireccion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="txt" alignment="CENTER" prefHeight="30.0" prefWidth="175.0" text="Telefono" textFill="#115122" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bauhaus 93" size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="122.0" text="Direccon" textFill="#115122" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Bauhaus 93" size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="175.0" text="NIT" textFill="#115122">
+               <font>
+                  <Font name="Bauhaus 93" size="19.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="175.0" text="Correo" textFill="#115122" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Bauhaus 93" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Button fx:id="btnRegresar" layoutX="137.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="65.0" prefWidth="104.0" style="-fx-background-color: #115122;" text="Home" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="54.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/hogar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="btnAgregarCliente" layoutX="257.0" layoutY="259.0" mnemonicParsing="false" onAction="#agregar" prefHeight="65.0" prefWidth="104.0" style="-fx-background-color: #115122;" text="Agregar" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="65.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/boton-mas.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <DropShadow />
+         </effect>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnEliminarCliente" layoutX="379.0" layoutY="258.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="65.0" prefWidth="106.0" style="-fx-background-color: #115122;" text="Eliminar" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/basura.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <DropShadow />
+         </effect>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnEditarCliente" layoutX="503.0" layoutY="258.0" mnemonicParsing="false" onAction="#editar" prefHeight="65.0" prefWidth="106.0" style="-fx-background-color: #115122;" text="Editar" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="63.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/recargar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <DropShadow />
+         </effect>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnReportesClientes" layoutX="626.0" layoutY="258.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="106.0" style="-fx-background-color: #115122;" text="Reportes" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/reporte.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <DropShadow />
+         </effect>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
+      </Button>
+   </children>
+</AnchorPane>
