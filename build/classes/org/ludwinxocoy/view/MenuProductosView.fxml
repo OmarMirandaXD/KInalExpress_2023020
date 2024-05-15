@@ -1,11 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="971.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <ImageView fitHeight="825.0" fitWidth="984.0" layoutX="-13.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/fondo%20Productos.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblProductos" layoutX="43.0" layoutY="313.0" prefHeight="469.0" prefWidth="881.0">
+        <columns>
+          <TableColumn fx:id="colCodigoProduccion" prefWidth="113.0" text="codigoProducto" />
+          <TableColumn fx:id="colDescripcionProducto" prefWidth="140.0" text="descripcionProducto" />
+            <TableColumn fx:id="colPrecioUnitario" prefWidth="120.0" text="precioUnitario" />
+            <TableColumn fx:id="colPrecioDocena" minWidth="0.0" prefWidth="89.0" text="precioDocena" />
+            <TableColumn fx:id="colPrecioMayor" minWidth="4.0" prefWidth="81.0" text="precioMayor" />
+            <TableColumn fx:id="colExistencia" prefWidth="83.0" text="existencia" />
+            <TableColumn fx:id="colCodTipoProd" prefWidth="136.0" text="codigoTipoProducto" />
+            <TableColumn fx:id="colCodProv" prefWidth="118.0" text="codigoProveedor" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnReportesProducto" layoutX="535.0" layoutY="244.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="67.0" text="Reportes" />
+      <Button fx:id="btnEliminarProducto" layoutX="368.0" layoutY="244.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="67.0" text="Eliminar" />
+      <Button fx:id="btnEditarProducto" layoutX="453.0" layoutY="244.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="67.0" text="Editar" />
+      <Button fx:id="btnAgregarProducto" layoutX="284.0" layoutY="244.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="67.0" text="Agregar" />
+      <Button fx:id="btnRegresar" layoutX="617.0" layoutY="244.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="67.0" text="Home" />
+      <GridPane layoutX="218.0" layoutY="98.0" prefHeight="120.0" prefWidth="213.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="111.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="89.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="txtCodigoProducto" GridPane.columnIndex="1" />
+            <TextField fx:id="txtDescripcionProducto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtPrecioUnitaro" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtPrecioDocena" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="codigoProducto" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="descripcionProducto" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="precioUnitario" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="precioDocena" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="520.0" layoutY="98.0" prefHeight="120.0" prefWidth="233.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="118.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="86.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="txtPrecioMayor" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtExistencia" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="precioMayor" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="existencia" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="codigoTipoProducto" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="codigoProveedor" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbCodigoTipoProducto" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cmbCodigoProveedor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+   </children>
 </AnchorPane>

@@ -18,6 +18,7 @@ import org.ludwinxocoy.controller.MenuCargoEmpleadoController;
 import org.ludwinxocoy.controller.MenuClienteController;
 import org.ludwinxocoy.controller.MenuComprasController;
 import org.ludwinxocoy.controller.MenuPrincipalController;
+import org.ludwinxocoy.controller.MenuProductosController;
 import org.ludwinxocoy.controller.MenuProgramadorController;
 import org.ludwinxocoy.controller.MenuProveedoresController;
 import org.ludwinxocoy.controller.MenuTipoProductoController;
@@ -120,6 +121,16 @@ public class Principal extends Application {
             e.printStackTrace();
         }
     }
+    
+    public void menuProductosView(){
+         try {
+            MenuProductosController MenuProductosView = (MenuProductosController) cambiarEscena("MenuProductosView.fxml", 971, 814);
+            MenuProductosView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 
     public static void main(String[] args) {
         launch(args);
