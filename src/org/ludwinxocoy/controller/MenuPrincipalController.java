@@ -50,21 +50,19 @@ public class MenuPrincipalController implements Initializable {
             escenarioPrincipal.menuClienteView();
         } else if (event.getSource() == btnMenuProgramador) {
             escenarioPrincipal.menuProgramadorView();
-        }else if (event.getSource() == btnMenuProveedores) {
+        } else if (event.getSource() == btnMenuProveedores) {
             escenarioPrincipal.menuProveedoresView();
-        }else if (event.getSource() == btnMenuCompras) {
-            escenarioPrincipal.menuComprasView(); 
-         }else if (event.getSource() == btnCargoEmplado) {
-            escenarioPrincipal.menuCargoEmpleadoView(); 
-         }else if (event.getSource() == btnTipoProducto) {
-            escenarioPrincipal.menuTipoProductoView(); 
-         }else if (event.getSource() == btnMenuProductos) {
+        } else if (event.getSource() == btnMenuCompras) {
+            escenarioPrincipal.menuComprasView();
+        } else if (event.getSource() == btnCargoEmplado) {
+            escenarioPrincipal.menuCargoEmpleadoView();
+        } else if (event.getSource() == btnTipoProducto) {
+            escenarioPrincipal.menuTipoProductoView();
+        } else if (event.getSource() == btnMenuProductos) {
             escenarioPrincipal.menuProductosView();
-            
-           
-    }  
-           
-    }  
-    
+
+        }
+
+    }
 
 }

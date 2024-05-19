@@ -102,8 +102,10 @@ public class MenuClienteController implements Initializable {
                 btnEditarCliente.setDisable(true);
                 btnReportesClientes.setDisable(true);
 
-                tipoDeOperaciones = operaciones.ACTUALIZAR;
-            case ACTUALIZAR:
+                tipoDeOperaciones = operaciones.AGREGAR;
+                break; // Agregar break aquí
+
+            case AGREGAR:
                 guardar();
                 desactivarControles();
                 limpiarControles();
@@ -111,11 +113,10 @@ public class MenuClienteController implements Initializable {
                 btnEliminarCliente.setText("Eliminar");
                 btnEditarCliente.setDisable(false);
                 btnReportesClientes.setDisable(false);
+                tipoDeOperaciones = operaciones.AGREGAR;
                 tipoDeOperaciones = operaciones.NINGUNO;
                 break;
-
         }
-
     }
 
     public void eliminar() {
@@ -133,7 +134,7 @@ public class MenuClienteController implements Initializable {
                 if (tblClientes.getSelectionModel().getSelectedItem() != null) {
                     int respuesta = JOptionPane.showConfirmDialog(null, "Confirmar la eliminación del registro",
                             "Eliminar Cliente", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                    if (respuesta == JOptionPane.YES_NO_OPTION) {
+                    if (respuesta == JOptionPane.YES_OPTION) {
                         try {
                             PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_eliminarClientes(?)}");
                             procedimiento.setInt(1, ((Clientes) tblClientes.getSelectionModel().getSelectedItem()).getclienteID());
@@ -158,6 +159,7 @@ public class MenuClienteController implements Initializable {
                     btnReportesClientes.setText("Cancelar");
                     btnAgregarCliente.setDisable(true);
                     btnEliminarCliente.setDisable(true);
+                    tipoDeOperaciones = operaciones.NINGUNO;
                     activarControles();
                     txtIdCliente.setEditable(false);
                     tipoDeOperaciones = operaciones.ACTUALIZAR;
@@ -168,7 +170,7 @@ public class MenuClienteController implements Initializable {
             case ACTUALIZAR:
                 actualizar();
                 btnEditarCliente.setText("Editar");
-                btnReportesClientes.setText("Reporte");
+                btnReportesClientes.setText("Cancelar");
                 btnAgregarCliente.setDisable(false);
                 btnEliminarCliente.setDisable(false);
                 desactivarControles();
@@ -182,13 +184,14 @@ public class MenuClienteController implements Initializable {
 
     public void actualizar() {
         try {
-            PreparedStatement Procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_editarClientes(?, ?, ?, ?, ?, ?, ?)}");
+            PreparedStatement Procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_actualizar(?, ?, ?, ?, ?, ?, ?)}");
             Clientes registro = (Clientes) tblClientes.getSelectionModel().getSelectedItem();
             registro.setNIT(txtNit.getText());
             registro.setNombreClientes(txtNombre.getText());
             registro.setApellidosClientes(txtApellido.getText());
             registro.setDireccionClientes(txtDireccion.getText());
             registro.setTelefonoClientes(txtTelefono.getText());
+            registro.setCorreoClientes(txtCorreo.getText());
             Procedimiento.setInt(1, registro.getclienteID());
             Procedimiento.setString(2, registro.getNIT());
             Procedimiento.setString(3, registro.getNombreClientes());
@@ -289,7 +292,7 @@ public class MenuClienteController implements Initializable {
         registro.setTelefonoClientes(txtTelefono.getText());
         registro.setCorreoClientes(txtCorreo.getText());
         try {
-            PreparedStatement Procedimiento = Conexion.getInstance().getInstance().getConexion().prepareCall("{call sp_AgregarClientes(?,?,?,?,?,?,?)}");
+            PreparedStatement Procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_AgregarClientes(?,?,?,?,?,?,?)}");
             Procedimiento.setInt(1, registro.getclienteID());
             Procedimiento.setString(2, registro.getNIT());
             Procedimiento.setString(3, registro.getNombreClientes());
@@ -297,6 +300,7 @@ public class MenuClienteController implements Initializable {
             Procedimiento.setString(5, registro.getDireccionClientes());
             Procedimiento.setString(6, registro.getTelefonoClientes());
             Procedimiento.setString(7, registro.getCorreoClientes());
+            Procedimiento.execute();
             listaClientes.add(registro);
         } catch (Exception e) {
             e.printStackTrace();

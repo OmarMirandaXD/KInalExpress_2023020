@@ -63,7 +63,7 @@
                <font>
                   <Font name="Bauhaus 93" size="19.0" />
                </font></Label>
-            <TextField fx:id="txtIdCliente" GridPane.columnIndex="1" />
+            <TextField GridPane.columnIndex="1" />
             <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="223.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtApellido" prefHeight="18.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="119.0" text="ID" textFill="#115122">

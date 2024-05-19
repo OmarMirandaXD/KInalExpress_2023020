@@ -18,7 +18,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import org.ludwinxocoy.bean.Compras;
@@ -35,14 +34,6 @@ public class MenuComprasController implements Initializable {
     }
     private operaciones tipoDeOperaciones = operaciones.NINGUNO;
         @FXML
-    private ImageView imgAgregar;
-    @FXML
-    private ImageView imgEliminar;
-    @FXML
-    private ImageView imgEditar;
-    @FXML
-    private ImageView imgReporte;
-    @FXML
     private Button btnRegresar;
     @FXML
     private Button btnAgregarCompra;
