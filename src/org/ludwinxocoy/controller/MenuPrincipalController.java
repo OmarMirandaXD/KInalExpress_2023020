@@ -30,6 +30,8 @@ public class MenuPrincipalController implements Initializable {
     MenuItem btnTipoProducto;
     @FXML
     MenuItem btnMenuProductos;
+    @FXML
+    MenuItem btnMenuEmpleados;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,6 +62,9 @@ public class MenuPrincipalController implements Initializable {
             escenarioPrincipal.menuTipoProductoView();
         } else if (event.getSource() == btnMenuProductos) {
             escenarioPrincipal.menuProductosView();
+        } else if (event.getSource() == btnMenuEmpleados) {
+            escenarioPrincipal.menuEmpleadosView();
+            
 
         }
 

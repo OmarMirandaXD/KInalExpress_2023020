@@ -64,6 +64,17 @@ CREATE TABLE Productos(
     FOREIGN KEY (codigoTipoProducto) REFERENCES TipoProducto(codigoTipoProducto),
     FOREIGN KEY (codigoProveedor) REFERENCES Proveedores(codigoProveedor)
 );
+CREATE TABLE Empleados(
+    codigoEmpleado INT AUTO_INCREMENT,
+    nombresEmpleado VARCHAR(50),
+    apellidosEmpleado VARCHAR(50),
+    sueldo DECIMAL(10,2),
+    direccion VARCHAR(150),
+    turno VARCHAR(15),
+    CargoEmpleado_codigoCargoEmpleado INT,
+    PRIMARY KEY (codigoEmpleado),
+    FOREIGN KEY (CargoEmpleado_codigoCargoEmpleado) REFERENCES CargoDeEmpleado(codigoCargoEmpleado)
+);
 
 -- Procedimientos almacenados para Clientes
 DELIMITER $$
@@ -487,6 +498,89 @@ BEGIN
 END $$
 
 DELIMITER ;
+DELIMITER $$
+
+CREATE PROCEDURE sp_ListarEmpleados()
+BEGIN
+    SELECT
+        codigoEmpleado,
+        nombresEmpleado,
+        apellidosEmpleado,
+        sueldo,
+        direccion,
+        turno,
+        CargoEmpleado_codigoCargoEmpleado
+    FROM Empleados;
+END $$
+
+CREATE PROCEDURE sp_AgregarEmpleado(
+    IN _nombresEmpleado VARCHAR(50), 
+    IN _apellidosEmpleado VARCHAR(50), 
+    IN _sueldo DECIMAL(10,2), 
+    IN _direccion VARCHAR(150), 
+    IN _turno VARCHAR(15), 
+    IN _CargoEmpleado_codigoCargoEmpleado INT
+)
+BEGIN
+    INSERT INTO Empleados(
+        nombresEmpleado, 
+        apellidosEmpleado, 
+        sueldo, 
+        direccion, 
+        turno, 
+        CargoEmpleado_codigoCargoEmpleado
+    ) VALUES (
+        _nombresEmpleado, 
+        _apellidosEmpleado, 
+        _sueldo, 
+        _direccion, 
+        _turno, 
+        _CargoEmpleado_codigoCargoEmpleado
+    );
+END $$
+
+CREATE PROCEDURE sp_BuscarEmpleado(IN _codigoEmpleado INT)
+BEGIN
+    SELECT
+        codigoEmpleado,
+        nombresEmpleado,
+        apellidosEmpleado,
+        sueldo,
+        direccion,
+        turno,
+        CargoEmpleado_codigoCargoEmpleado
+    FROM Empleados
+    WHERE codigoEmpleado = _codigoEmpleado;
+END $$
+
+CREATE PROCEDURE sp_EliminarEmpleado(IN _codigoEmpleado INT)
+BEGIN
+    DELETE FROM Empleados WHERE codigoEmpleado = _codigoEmpleado;
+END $$
+
+CREATE PROCEDURE sp_ActualizarEmpleado(
+    IN _codigoEmpleado INT, 
+    IN _nombresEmpleado VARCHAR(50), 
+    IN _apellidosEmpleado VARCHAR(50), 
+    IN _sueldo DECIMAL(10,2), 
+    IN _direccion VARCHAR(150), 
+    IN _turno VARCHAR(15), 
+    IN _CargoEmpleado_codigoCargoEmpleado INT
+)
+BEGIN
+    UPDATE Empleados
+    SET 
+        nombresEmpleado = _nombresEmpleado,
+        apellidosEmpleado = _apellidosEmpleado,
+        sueldo = _sueldo,
+        direccion = _direccion,
+        turno = _turno,
+        CargoEmpleado_codigoCargoEmpleado = _CargoEmpleado_codigoCargoEmpleado
+    WHERE
+        codigoEmpleado = _codigoEmpleado;
+END $$
+
+DELIMITER ;
 
 -- Insertar datos de prueba
 INSERT INTO Clientes (nombreClientes, apellidosClientes, direccionClientes, NIT, telefonoClientes, correoClientes) VALUES
@@ -513,3 +607,7 @@ INSERT INTO CargoDeEmpleado (nombreCargo, descripcionCargo) VALUES
 INSERT INTO Productos (codigoProducto, descripcionProducto, precioUnitario, precioDocena, precioMayor, existencia, codigoTipoProducto, codigoProveedor) VALUES
 ('P001', 'Televisor LED', 500.00, 4800.00, 4500.00, 50, 1, 1),
 ('P002', 'Camisa', 20.00, 220.00, 200.00, 100, 2, 2);
+
+INSERT INTO Empleados (nombresEmpleado, apellidosEmpleado, sueldo, direccion, turno, CargoEmpleado_codigoCargoEmpleado) VALUES
+('Luis', 'González', 1500.50, 'Calle Principal 123', 'Diurno', 1),
+('Ana', 'Martínez', 1200.75, 'Avenida Central 456', 'Nocturno', 2);

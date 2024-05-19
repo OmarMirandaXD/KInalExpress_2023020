@@ -113,12 +113,12 @@ public class MenuProductosController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-public void initialize(URL url, ResourceBundle rb) {
-    cargarDatos();
-    cmbCodigoTipoProducto.setItems(getTipoP());
-    cmbCodigoProveedor.setItems(getProveedores());
-    desactivarControles();
-}
+    public void initialize(URL url, ResourceBundle rb) {
+        cargarDatos();
+        cmbCodigoTipoProducto.setItems(getTipoP());
+        cmbCodigoProveedor.setItems(getProveedores());
+        desactivarControles();
+    }
 
     public void cargarDatos() {
         tblProductos.setItems(getProducto());
@@ -372,20 +372,18 @@ public void initialize(URL url, ResourceBundle rb) {
                 break;
             default:
                 if (tblProductos.getSelectionModel().getSelectedItem() != null) {
-                    int ans = JOptionPane.showConfirmDialog(null, "Confirma esta Acción", "Verificación",
+                    int respuesta = JOptionPane.showConfirmDialog(null, "Confirma esta Acción", "Verificación",
                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                    if (ans == JOptionPane.YES_OPTION) {
+                    if (respuesta == JOptionPane.YES_OPTION) {
                         try {
                             Producto productoSeleccionado = (Producto) tblProductos.getSelectionModel().getSelectedItem();
                             String codigoProducto = productoSeleccionado.getCodigoProducto();
 
-                            
                             PreparedStatement eliminarDetalleCompraStmt = Conexion.getInstance().getConexion()
                                     .prepareCall("{call sp_EliminarCompra(?)}");
                             eliminarDetalleCompraStmt.setString(1, codigoProducto);
                             eliminarDetalleCompraStmt.execute();
 
-                           
                             PreparedStatement eliminarProductoStmt = Conexion.getInstance().getConexion()
                                     .prepareCall("{call sp_EliminarProducto(?)}");
                             eliminarProductoStmt.setString(1, codigoProducto);
