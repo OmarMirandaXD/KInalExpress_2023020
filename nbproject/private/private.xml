@@ -3,25 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/view/MenuProgramadorView.fxml</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuProveedoresController.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/Empleados.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/DetalleCompra.java</file>
             <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuClienteController.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuProveedoresController.java</file>
             <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuProductosController.java</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuTipoProductoController.java</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuProgramadorController.java</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/database/DDl.sql</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/view/MenuTipoProductoView.fxml</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/system/Principal.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuEmpleadoController.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/EmailProveedor.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/Compras.java</file>
             <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/Producto.java</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/view/MenuComprasView.fxml</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/TelefonoProveedor.java</file>
             <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuComprasController.java</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/db/Conexion.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuTelefonoProveedor.java</file>
             <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/Proveedores.java</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/TipoDeProducto.java</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/database/DML.sql</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/view/MenuProductosView.fxml</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/view/MenuDetalleCompraView.fxml</file>
             <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuPrincipalController.java</file>
-            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/view/MenuProveedoresView.fxml</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/DetalleFactura.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/Factura.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/system/Principal.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/Clientes.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/view/MenuComprasView.fxml</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuCargoEmpleadoController.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/bean/TipoDeProducto.java</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/view/MenuProductosView.fxml</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/view/MenuEmpleadosView.fxml</file>
+            <file>file:/C:/Users/omarx/OneDrive/Escritorio/KInalExpress_2023020-master/src/org/ludwinxocoy/controller/MenuDetalleCompraController.java</file>
         </group>
     </open-files>
 </project-private>

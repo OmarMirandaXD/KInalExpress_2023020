@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import org.ludwinxocoy.controller.MenuCargoEmpleadoController;
 import org.ludwinxocoy.controller.MenuClienteController;
 import org.ludwinxocoy.controller.MenuComprasController;
+import org.ludwinxocoy.controller.MenuDetalleCompraController;
 import org.ludwinxocoy.controller.MenuEmpleadoController;
 import org.ludwinxocoy.controller.MenuPrincipalController;
 import org.ludwinxocoy.controller.MenuProductosController;
@@ -137,10 +138,19 @@ public class Principal extends Application {
             MenuEmpleadosView.setEscenarioPrincipal(this);
         } catch (Exception e) {
             e.printStackTrace();
-    }}
+    }
+    }
+    public void menuDetalleCompraView(){
+         try {
+            MenuDetalleCompraController MenuDetalleCompraView = (MenuDetalleCompraController) cambiarEscena("MenuDetalleCompraView.fxml", 710, 595);
+            MenuDetalleCompraView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
 
-    public static void main(String[] args) {
+    public static void principal(String[] args) {
         launch(args);
     }
 
