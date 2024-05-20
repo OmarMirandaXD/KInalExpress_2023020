@@ -56,9 +56,6 @@ public class MenuEmpleadoController implements Initializable {
     @FXML
     private TextField txtTurno;
     @FXML
-    private TextField txtCargoEmpleadoCodigo;
-
-    @FXML
     private TableView tblEmpleados;
     @FXML
     private TableColumn colCodigoEmpleado;
@@ -74,18 +71,51 @@ public class MenuEmpleadoController implements Initializable {
     private TableColumn colTurno;
     @FXML
     private TableColumn colCargoEmpleadoCodigo;
-    @FXML   
+    @FXML
     private ComboBox cmbCodigoCargoEmpleado;
-@Override
-public void initialize(URL location, ResourceBundle resources) {
-    listaEmpleados = FXCollections.observableArrayList();
-    cargarDatos();
-}
+    
+    private ObservableList<CargoDeEmpleado> listaCargoE;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        listaEmpleados = FXCollections.observableArrayList();
+        cargarDatos();
+        cmbCodigoCargoEmpleado.setItems(getCargoE());
+        
+    }
+
+    public void seleccionarElemento() {
+        if (tblEmpleados.getSelectionModel().getSelectedItem() != null) {
+            Empleados empleado = (Empleados) tblEmpleados.getSelectionModel().getSelectedItem();
+            txtCodigoEmpleado.setText(String.valueOf(empleado.getCodigoEmpleado()));
+            txtNombresEmpleado.setText(empleado.getNombresEmpleado());
+            txtApellidosEmpleado.setText(empleado.getApellidosEmpleado());
+            txtSueldo.setText(String.valueOf(empleado.getSueldo()));
+            txtDireccion.setText(empleado.getDireccion());
+            txtTurno.setText(empleado.getTurno());
+            cmbCodigoCargoEmpleado.getSelectionModel().select(buscarCodigoCargoEmpleado(empleado.getCodigoCargoEmpleado()));
+        }
+    }
+
+    public CargoDeEmpleado buscarCodigoCargoEmpleado(int codigoCargoEmpleado) {
+        CargoDeEmpleado resultado = null;
+        try {
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_buscarCargoEmpleado(?)}");
+            procedimiento.setInt(1, codigoCargoEmpleado);
+            ResultSet registro = procedimiento.executeQuery();
+            while (registro.next()) {
+                resultado = new CargoDeEmpleado(registro.getInt("codigoCargoEmpleado"), registro.getString("nombreCargo"), registro.getString("descripcionCargo"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultado;
+    }
 
     public void agregar() {
         switch (tipoDeOperaciones) {
             case NINGUNO:
+                limpiarControles();
                 activarControles();
                 btnAgregarEmpleado.setText("Guardar");
                 btnEliminarEmpleado.setText("Cancelar");
@@ -95,8 +125,9 @@ public void initialize(URL location, ResourceBundle resources) {
                 break;
             case AGREGAR:
                 guardar();
-                desactivarControles();
                 limpiarControles();
+                cargarDatos();
+                desactivarControles();
                 btnAgregarEmpleado.setText("Agregar");
                 btnEliminarEmpleado.setText("Eliminar");
                 btnEditarEmpleado.setDisable(false);
@@ -176,14 +207,14 @@ public void initialize(URL location, ResourceBundle resources) {
             registro.setSueldo(Double.parseDouble(txtSueldo.getText()));
             registro.setDireccion(txtDireccion.getText());
             registro.setTurno(txtTurno.getText());
-            registro.setcodigoCargoEmpleado(((CargoDeEmpleado)cmbCodigoCargoEmpleado.getSelectionModel().getSelectedItem()).getCodigoCargoEmpleado());
+            registro.setCodigoCargoEmpleado(((CargoDeEmpleado) cmbCodigoCargoEmpleado.getSelectionModel().getSelectedItem()).getCodigoCargoEmpleado());
             procedimiento.setInt(1, registro.getCodigoEmpleado());
             procedimiento.setString(2, registro.getNombresEmpleado());
             procedimiento.setString(3, registro.getApellidosEmpleado());
             procedimiento.setDouble(4, registro.getSueldo());
             procedimiento.setString(5, registro.getDireccion());
             procedimiento.setString(6, registro.getTurno());
-            procedimiento.setInt(7, registro.getcodigoCargoEmpleado());
+            procedimiento.setInt(7, registro.getCodigoCargoEmpleado());
             procedimiento.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -208,7 +239,8 @@ public void initialize(URL location, ResourceBundle resources) {
         txtSueldo.clear();
         txtDireccion.clear();
         txtTurno.clear();
-        txtCargoEmpleadoCodigo.clear();
+        tblEmpleados.getSelectionModel().getSelectedItem();
+        cmbCodigoCargoEmpleado.getSelectionModel().clearSelection();
     }
 
     public void activarControles() {
@@ -218,7 +250,8 @@ public void initialize(URL location, ResourceBundle resources) {
         txtSueldo.setEditable(true);
         txtDireccion.setEditable(true);
         txtTurno.setEditable(true);
-        txtCargoEmpleadoCodigo.setEditable(true);
+        cmbCodigoCargoEmpleado.setDisable(false);
+
     }
 
     public void desactivarControles() {
@@ -228,7 +261,7 @@ public void initialize(URL location, ResourceBundle resources) {
         txtSueldo.setEditable(false);
         txtDireccion.setEditable(false);
         txtTurno.setEditable(false);
-        txtCargoEmpleadoCodigo.setEditable(false);
+        cmbCodigoCargoEmpleado.setDisable(true);
     }
 
     public ObservableList<Empleados> getEmpleados() {
@@ -250,19 +283,37 @@ public void initialize(URL location, ResourceBundle resources) {
         }
         return listaEmpleados = FXCollections.observableArrayList(lista);
     }
+    
+     
 
-public void guardar() {
-    Empleados registro = new Empleados();
-    registro.setCodigoEmpleado(Integer.parseInt(txtCodigoEmpleado.getText()));
-    registro.setNombresEmpleado(txtNombresEmpleado.getText());
-    registro.setApellidosEmpleado(txtApellidosEmpleado.getText());
-    registro.setSueldo(Double.parseDouble(txtSueldo.getText()));
-    registro.setDireccion(txtDireccion.getText());
-    registro.setTurno(txtTurno.getText());
+    public ObservableList<CargoDeEmpleado> getCargoE() {
+        ArrayList<CargoDeEmpleado> lista = new ArrayList<>();
+        try {
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_ListarCargoEmpleado()}");
+            ResultSet resultado = procedimiento.executeQuery();
+            while (resultado.next()) {
+                lista.add(new CargoDeEmpleado(resultado.getInt("codigoCargoEmpleado"),
+                        resultado.getString("nombreCargo"),
+                        resultado.getString("descripcionCargo")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-    // Verificar si hay un elemento seleccionado en el ComboBox
-    if (cmbCodigoCargoEmpleado.getSelectionModel().getSelectedItem() != null) {
-        registro.setcodigoCargoEmpleado(((CargoDeEmpleado) cmbCodigoCargoEmpleado.getSelectionModel().getSelectedItem()).getCodigoCargoEmpleado());
+        return listaCargoE = FXCollections.observableList(lista);
+    }
+
+    public void guardar() {
+        Empleados registro = new Empleados();
+        registro.setCodigoEmpleado(Integer.parseInt(txtCodigoEmpleado.getText()));
+        registro.setNombresEmpleado(txtNombresEmpleado.getText());
+        registro.setApellidosEmpleado(txtApellidosEmpleado.getText());
+        registro.setSueldo(Double.parseDouble(txtSueldo.getText()));
+        registro.setDireccion(txtDireccion.getText());
+        registro.setTurno(txtTurno.getText());
+        registro.setCodigoCargoEmpleado(((CargoDeEmpleado) cmbCodigoCargoEmpleado.getSelectionModel().getSelectedItem()).getCodigoCargoEmpleado());
+
         try {
             PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_AgregarEmpleado(?, ?, ?, ?, ?, ?, ?)}");
             procedimiento.setInt(1, registro.getCodigoEmpleado());
@@ -271,18 +322,16 @@ public void guardar() {
             procedimiento.setDouble(4, registro.getSueldo());
             procedimiento.setString(5, registro.getDireccion());
             procedimiento.setString(6, registro.getTurno());
-            procedimiento.setInt(7, registro.getcodigoCargoEmpleado());
+            procedimiento.setInt(7, registro.getCodigoCargoEmpleado());
             procedimiento.execute();
             listaEmpleados.add(registro);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Debe seleccionar un cargo para el empleado");
-    }
-}
 
-        public Principal getEscenarioPrincipal() {
+    }
+
+    public Principal getEscenarioPrincipal() {
         return escenarioPrincipal;
     }
 

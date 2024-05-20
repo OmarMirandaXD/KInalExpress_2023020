@@ -21,13 +21,13 @@
             <Image url="@../images/Empleados%20Fondo.png" />
          </image>
       </ImageView>
-      <TableView layoutX="50.0" layoutY="99.0" prefHeight="316.0" prefWidth="768.0">
+      <TableView fx:id="tblEmpleados" layoutX="50.0" layoutY="99.0" prefHeight="316.0" prefWidth="768.0">
         <columns>
           <TableColumn fx:id="colCodigoEmpleado" prefWidth="128.0" text="Codigo Empleado" />
           <TableColumn fx:id="colNombresEmpleado" prefWidth="128.0" text="Nombre Empleado" />
             <TableColumn fx:id="colApellidosEmpleado" prefWidth="135.0" text="Apellido Empleado" />
             <TableColumn fx:id="colSueldo" prefWidth="83.0" text="Sueldo" />
-            <TableColumn fx:id="colDIreccion" text="Direccion" />
+            <TableColumn fx:id="colDireccion" text="Direccion" />
             <TableColumn fx:id="colTurno" prefWidth="58.0" text="Turno" />
             <TableColumn fx:id="colCargoEmpleadoCodigo" prefWidth="155.0" text="Cargo de Empleado" />
         </columns>

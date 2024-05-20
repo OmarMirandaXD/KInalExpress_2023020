@@ -71,9 +71,9 @@ CREATE TABLE Empleados(
     sueldo DECIMAL(10,2),
     direccion VARCHAR(150),
     turno VARCHAR(15),
-    CargoEmpleado_codigoCargoEmpleado INT,
+    codigoCargoEmpleado INT,
     PRIMARY KEY (codigoEmpleado),
-    FOREIGN KEY (CargoEmpleado_codigoCargoEmpleado) REFERENCES CargoDeEmpleado(codigoCargoEmpleado)
+    FOREIGN KEY (codigoCargoEmpleado) REFERENCES CargoDeEmpleado(codigoCargoEmpleado)
 );
 
 -- Procedimientos almacenados para Clientes
@@ -509,33 +509,36 @@ BEGIN
         sueldo,
         direccion,
         turno,
-        CargoEmpleado_codigoCargoEmpleado
+        codigoCargoEmpleado
     FROM Empleados;
 END $$
 
 CREATE PROCEDURE sp_AgregarEmpleado(
+	IN _codigoEmpleado  INT,
     IN _nombresEmpleado VARCHAR(50), 
     IN _apellidosEmpleado VARCHAR(50), 
     IN _sueldo DECIMAL(10,2), 
     IN _direccion VARCHAR(150), 
     IN _turno VARCHAR(15), 
-    IN _CargoEmpleado_codigoCargoEmpleado INT
+    IN codigoCargoEmpleado INT
 )
 BEGIN
     INSERT INTO Empleados(
+		codigoEmpleado,
         nombresEmpleado, 
         apellidosEmpleado, 
         sueldo, 
         direccion, 
         turno, 
-        CargoEmpleado_codigoCargoEmpleado
+        codigoCargoEmpleado
     ) VALUES (
+		_codigoEmpleado,
         _nombresEmpleado, 
         _apellidosEmpleado, 
         _sueldo, 
         _direccion, 
         _turno, 
-        _CargoEmpleado_codigoCargoEmpleado
+        _codigoCargoEmpleado
     );
 END $$
 
@@ -548,7 +551,7 @@ BEGIN
         sueldo,
         direccion,
         turno,
-        CargoEmpleado_codigoCargoEmpleado
+        codigoCargoEmpleado
     FROM Empleados
     WHERE codigoEmpleado = _codigoEmpleado;
 END $$
@@ -565,7 +568,7 @@ CREATE PROCEDURE sp_ActualizarEmpleado(
     IN _sueldo DECIMAL(10,2), 
     IN _direccion VARCHAR(150), 
     IN _turno VARCHAR(15), 
-    IN _CargoEmpleado_codigoCargoEmpleado INT
+    IN _codigoCargoEmpleado INT
 )
 BEGIN
     UPDATE Empleados
@@ -575,7 +578,7 @@ BEGIN
         sueldo = _sueldo,
         direccion = _direccion,
         turno = _turno,
-        CargoEmpleado_codigoCargoEmpleado = _CargoEmpleado_codigoCargoEmpleado
+        codigoCargoEmpleado = _codigoCargoEmpleado
     WHERE
         codigoEmpleado = _codigoEmpleado;
 END $$
@@ -608,6 +611,6 @@ INSERT INTO Productos (codigoProducto, descripcionProducto, precioUnitario, prec
 ('P001', 'Televisor LED', 500.00, 4800.00, 4500.00, 50, 1, 1),
 ('P002', 'Camisa', 20.00, 220.00, 200.00, 100, 2, 2);
 
-INSERT INTO Empleados (nombresEmpleado, apellidosEmpleado, sueldo, direccion, turno, CargoEmpleado_codigoCargoEmpleado) VALUES
+INSERT INTO Empleados (nombresEmpleado, apellidosEmpleado, sueldo, direccion, turno, codigoCargoEmpleado) VALUES
 ('Luis', 'González', 1500.50, 'Calle Principal 123', 'Diurno', 1),
 ('Ana', 'Martínez', 1200.75, 'Avenida Central 456', 'Nocturno', 2);

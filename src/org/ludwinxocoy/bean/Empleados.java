@@ -72,11 +72,11 @@ public class Empleados {
         this.turno = turno;
     }
 
-    public int getcodigoCargoEmpleado() {
+    public int getCodigoCargoEmpleado() {
         return codigoCargoEmpleado;
     }
 
-    public void setcodigoCargoEmpleado(int codigoCargoEmpleado) {
+    public void setCodigoCargoEmpleado(int codigoCargoEmpleado) {
         this.codigoCargoEmpleado = codigoCargoEmpleado;
     }
 

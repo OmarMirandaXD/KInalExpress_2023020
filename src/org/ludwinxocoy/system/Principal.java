@@ -133,7 +133,7 @@ public class Principal extends Application {
     }
     public void menuEmpleadosView(){
         try {
-            MenuEmpleadoController MenuEmpleadosView = (MenuEmpleadoController) cambiarEscena("MenuEmpleadosView.fxml", 971, 814);
+            MenuEmpleadoController MenuEmpleadosView = (MenuEmpleadoController) cambiarEscena("MenuEmpleadosView.fxml", 868, 728);
             MenuEmpleadosView.setEscenarioPrincipal(this);
         } catch (Exception e) {
             e.printStackTrace();
