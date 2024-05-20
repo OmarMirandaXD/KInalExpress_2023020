@@ -80,4 +80,9 @@ public class Empleados {
         this.codigoCargoEmpleado = codigoCargoEmpleado;
     }
 
+ @Override
+    public String toString() {
+        return "| " + getCodigoEmpleado() + " | " + getNombresEmpleado();
+    }
+
 }

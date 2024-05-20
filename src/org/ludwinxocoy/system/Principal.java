@@ -18,7 +18,10 @@ import org.ludwinxocoy.controller.MenuCargoEmpleadoController;
 import org.ludwinxocoy.controller.MenuClienteController;
 import org.ludwinxocoy.controller.MenuComprasController;
 import org.ludwinxocoy.controller.MenuDetalleCompraController;
+import org.ludwinxocoy.controller.MenuDetalleFacturaController;
+import org.ludwinxocoy.controller.MenuEmailProveedorController;
 import org.ludwinxocoy.controller.MenuEmpleadoController;
+import org.ludwinxocoy.controller.MenuFacturaController;
 import org.ludwinxocoy.controller.MenuPrincipalController;
 import org.ludwinxocoy.controller.MenuProductosController;
 import org.ludwinxocoy.controller.MenuProgramadorController;
@@ -151,8 +154,34 @@ public class Principal extends Application {
     }
     public void menuTelefonoProveedorView(){
          try {
-            MenuTelefonoProveedorController MenuTelefonoProveedorView = (MenuTelefonoProveedorController) cambiarEscena("MenuTelefonoProveedorView.fxml", 710, 595);
+            MenuTelefonoProveedorController MenuTelefonoProveedorView = (MenuTelefonoProveedorController) cambiarEscena("MenuTelefonoProveedorView.fxml", 740, 621);
             MenuTelefonoProveedorView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void menuEmailProveedorView(){
+         try {
+            MenuEmailProveedorController MenuEmailProveedorView = (MenuEmailProveedorController) cambiarEscena("MenuEmailProveedorView.fxml", 740, 621);
+            MenuEmailProveedorView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuFacturaView(){
+         try {
+            MenuFacturaController MenuFacturaView = (MenuFacturaController) cambiarEscena("MenuFacturaView.fxml", 962, 800);
+            MenuFacturaView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuDetalleFacturaView(){
+         try {
+            MenuDetalleFacturaController MenuDetalleFacturaView = (MenuDetalleFacturaController) cambiarEscena("MenuDetalleFacturaView.fxml", 822, 713);
+            MenuDetalleFacturaView.setEscenarioPrincipal(this);
         } catch (Exception e) {
             e.printStackTrace();
         }

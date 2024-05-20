@@ -85,4 +85,10 @@ public class Clientes {
         this.correoClientes = correoClientes;
     }
 
+    @Override
+    public String toString() {
+        return "| " + getclienteID() + " | " + getNombreClientes();
+    }
+
 }
+

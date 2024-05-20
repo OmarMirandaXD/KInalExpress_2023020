@@ -109,9 +109,7 @@ public class MenuProductosController implements Initializable {
     }
     private operador tipoDeOperador = operador.NINGUNO;
 
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarDatos();

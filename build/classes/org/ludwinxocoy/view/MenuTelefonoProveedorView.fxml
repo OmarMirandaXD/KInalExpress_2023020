@@ -68,6 +68,6 @@
       <Button fx:id="btnEliminar" layoutX="26.0" layoutY="242.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
       <Button fx:id="btnEditar" layoutX="26.0" layoutY="297.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
       <Button fx:id="btnReporte" layoutX="26.0" layoutY="350.0" mnemonicParsing="false" onAction="#reportes" text="Reportes" />
-      <Button fx:id="btnRegresar" layoutX="26.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Home" />
+      <Button fx:id="btnRegresar" layoutX="26.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Proveedores" />
    </children>
 </AnchorPane>

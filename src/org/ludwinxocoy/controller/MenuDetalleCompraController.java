@@ -401,7 +401,7 @@ public class MenuDetalleCompraController implements Initializable {
     public void handleButtonAction(ActionEvent event) {
 
         if (event.getSource() == btnRegresar) {
-            escenarioPrincipal.menuPrincipalView();
+            escenarioPrincipal.menuComprasView();
         }
     }
 

@@ -96,6 +96,7 @@ public class MenuClienteController implements Initializable {
     public void agregar() {
         switch (tipoDeOperaciones) {
             case NINGUNO:
+                limpiarControles();
                 activarControles();
                 btnAgregarCliente.setText("Guardar");
                 btnEliminarCliente.setText("Cancelar");
@@ -103,18 +104,18 @@ public class MenuClienteController implements Initializable {
                 btnReportesClientes.setDisable(true);
 
                 tipoDeOperaciones = operaciones.AGREGAR;
-                break; // Agregar break aquí
+                break; 
 
             case AGREGAR:
-                guardar();
-                desactivarControles();
                 limpiarControles();
+                cargarDatos();
+                desactivarControles();
                 btnAgregarCliente.setText("Agregar");
                 btnEliminarCliente.setText("Eliminar");
                 btnEditarCliente.setDisable(false);
                 btnReportesClientes.setDisable(false);
-                tipoDeOperaciones = operaciones.AGREGAR;
                 tipoDeOperaciones = operaciones.NINGUNO;
+                cargarDatos();
                 break;
         }
     }
