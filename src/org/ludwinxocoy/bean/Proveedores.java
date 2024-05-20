@@ -91,7 +91,7 @@ public class Proveedores {
     }
 @Override
     public String toString() {
-        return getNitProveedor()+ " | " + getNitProveedor();
+        return getNitProveedor()+ " | " + getNombresProveedor();
     }
 }
 

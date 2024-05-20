@@ -23,6 +23,7 @@ import org.ludwinxocoy.controller.MenuPrincipalController;
 import org.ludwinxocoy.controller.MenuProductosController;
 import org.ludwinxocoy.controller.MenuProgramadorController;
 import org.ludwinxocoy.controller.MenuProveedoresController;
+import org.ludwinxocoy.controller.MenuTelefonoProveedorController;
 import org.ludwinxocoy.controller.MenuTipoProductoController;
 
 public class Principal extends Application {
@@ -144,6 +145,14 @@ public class Principal extends Application {
          try {
             MenuDetalleCompraController MenuDetalleCompraView = (MenuDetalleCompraController) cambiarEscena("MenuDetalleCompraView.fxml", 710, 595);
             MenuDetalleCompraView.setEscenarioPrincipal(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void menuTelefonoProveedorView(){
+         try {
+            MenuTelefonoProveedorController MenuTelefonoProveedorView = (MenuTelefonoProveedorController) cambiarEscena("MenuTelefonoProveedorView.fxml", 710, 595);
+            MenuTelefonoProveedorView.setEscenarioPrincipal(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
