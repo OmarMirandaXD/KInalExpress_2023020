@@ -12,7 +12,7 @@ public class Conexion {
     private Conexion() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            String url = "jdbc:mysql://localhost:3306/DBKinalExpressIN5BM?useSSL=false&allowPublicKeyRetrieval=true";
+            String url = "jdbc:mysql://127.0.0.1:3306/DBKinalExpressIN5BM?useSSL=false&allowPublicKeyRetrieval=true";
             conexion = DriverManager.getConnection(url, "root", "admin");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             e.printStackTrace();

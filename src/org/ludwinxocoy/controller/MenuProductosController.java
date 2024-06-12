@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +27,7 @@ import org.ludwinxocoy.bean.Proveedores;
 import org.ludwinxocoy.bean.TipoDeProducto;
 import org.ludwinxocoy.system.Principal;
 import org.ludwinxocoy.db.Conexion;
+import org.ludwinxocoy.reportes.GenerarReportes;
 
 /**
  * FXML Controller class
@@ -401,17 +404,25 @@ public class MenuProductosController implements Initializable {
         }
     }
 
-    public void reportes() {
+    public void reportes(){
         switch (tipoDeOperador) {
+            case NINGUNO:
+                imprimirReporte();
+                break;
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
-                btnEditarProducto.setText("Editar");
+                btnEliminarProducto.setText("Editar");
                 btnReportesProducto.setText("Reportes");
                 btnAgregarProducto.setDisable(false);
                 btnEliminarProducto.setDisable(false);
-                tipoDeOperador = operador.NINGUNO;
+                tipoDeOperador = MenuProductosController.operador.NINGUNO;
         }
+    }
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("codigoProducto", null);
+        GenerarReportes.mostrarReportesProductos("ReporteProducto.jasper", "reporte de Producto", parametros);
     }
 
     public void desactivarControles() {

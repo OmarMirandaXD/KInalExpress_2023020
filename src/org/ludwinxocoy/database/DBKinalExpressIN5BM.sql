@@ -380,6 +380,8 @@ BEGIN
 END $$
 
 -- Procedimientos almacenados para TipoProducto
+DELIMITER $$
+
 CREATE PROCEDURE sp_AgregarTipoProducto (
     IN _descripcion VARCHAR(45)
 )
@@ -427,7 +429,6 @@ BEGIN
     FROM TipoProducto
     WHERE codigoTipoProducto = _codigoTipoProducto;
 END $$
-
 -- Procedimientos almacenados para CargoDeEmpleado
 CREATE PROCEDURE sp_AgregarCargoEmpleado (
     IN _nombreCargo VARCHAR(50),
@@ -495,7 +496,6 @@ CREATE PROCEDURE sp_AgregarProducto (
     IN _codigoTipoProducto INT,
     IN _codigoProveedor INT
 )
-
 BEGIN
     INSERT INTO Productos(
         codigoProducto,
@@ -518,6 +518,7 @@ BEGIN
         _codigoProveedor
     );
 END $$
+
 CREATE PROCEDURE sp_buscarProducto (
     IN _codigoProducto VARCHAR(15)
 )
@@ -547,8 +548,7 @@ BEGIN
         codigoTipoProducto,
         codigoProveedor
     FROM Productos;
-END;
-
+END $$
 
 CREATE PROCEDURE sp_EditarProducto (
     IN _codigoProducto VARCHAR(15),
@@ -578,6 +578,7 @@ CREATE PROCEDURE sp_EliminarProducto(IN _codigoProducto VARCHAR(15))
 BEGIN
     DELETE FROM Productos WHERE codigoProducto = _codigoProducto;
 END $$
+
 
 DELIMITER ;
 DELIMITER $$
@@ -966,144 +967,90 @@ BEGIN
 END $$
 DELIMITER ;
 
-DELIMITER $$
+
+
+CALL sp_AgregarClientes(1, '1234567890123', 'Juan', 'Pérez', '123 Calle Falsa', '5551234567', 'juan.perez@example.com');
+CALL sp_AgregarClientes(2, '2345678901234', 'María', 'García', '456 Avenida Siempreviva', '5552345678', 'maria.garcia@example.com');
+CALL sp_AgregarClientes(3, '3456789012345', 'Carlos', 'López', '789 Calle Principal', '5553456789', 'carlos.lopez@example.com');
+CALL sp_AgregarClientes(4, '4567890123456', 'Ana', 'Rodríguez', '1011 Boulevard Secundario', '5554567890', 'ana.rodriguez@example.com');
+CALL sp_AgregarClientes(5, '5678901234567', 'Luis', 'Martínez', '1213 Calle Tercera', '5555678901', 'luis.martinez@example.com');
 
 
 
--- Insertar datos de prueba
-INSERT INTO Clientes (nombreClientes, apellidosClientes, direccionClientes, NIT, telefonoClientes, correoClientes) VALUES
-('Juan', 'Pérez', '123 Calle Falsa', '1234567890123', '555-1234', 'juan.perez@example.com'),
-('María', 'Gómez', '456 Avenida Siempre Viva', '9876543210987', '555-5678', 'maria.gomez@example.com');
-
--- Insertar datos en TipoProducto
-INSERT INTO TipoProducto (descripcion) VALUES
-('Electrónica'),
-('Ropa'),
-('Alimentos');
-
--- Insertar datos en CargoDeEmpleado
-INSERT INTO CargoDeEmpleado (nombreCargo, descripcionCargo) VALUES
-('Gerente', 'Responsable de la gestión general de la empresa'),
-('Vendedor', 'Encargado de la venta de productos');
-
--- Insertar datos en Proveedores
-INSERT INTO Proveedores (NitProveedor, nombresProveedor, apellidosProveedor, direccionProveedor, razonSocial, contactoPrincipal, paginaWeb, telefonoProveedor, emailProveedor) VALUES
-('1234567890', 'Carlos', 'Ramírez', '789 Calle Principal', 'Proveedor ABC', 'Carlos Ramírez', 'www.proveedorabc.com', '555-8765', 'carlos.ramirez@example.com'),
-('9876543210', 'Laura', 'Martínez', '321 Avenida Central', 'Proveedor XYZ', 'Laura Martínez', 'www.proveedorxyz.com', '555-4321', 'laura.martinez@example.com');
-
--- Insertar datos en Compras
-INSERT INTO Compras (fechaDocumento, descripcion, totalDocumento) VALUES
-('2023-05-01', 'Compra de materiales', 1500.00),
-('2023-06-15', 'Compra de equipos', 3200.50);
-
--- Insertar datos en Productos
-INSERT INTO Productos (codigoProducto, descripcionProducto, precioUnitario, precioDocena, precioMayor, existencia, codigoTipoProducto, codigoProveedor) VALUES
-('P001', 'Televisor LED', 500.00, 4800.00, 4500.00, 50, 1, 1),
-('P002', 'Camisa', 20.00, 220.00, 200.00, 100, 2, 2);
-
--- Insertar datos en Empleados
-INSERT INTO Empleados (nombresEmpleado, apellidosEmpleado, sueldo, direccion, turno, codigoCargoEmpleado) VALUES
-('Luis', 'González', 1500.50, 'Calle Principal 123', 'Diurno', 1),
-('Ana', 'Martínez', 1200.75, 'Avenida Central 456', 'Nocturno', 2);
-
--- Insertar datos en DetalleCompra
-INSERT INTO DetalleCompra (codigoDetalleCompra, costoUnitario, cantidad, codigoProducto, numeroDocumento) VALUES 
-(1, 10.50, 3, 'P001', 1),
-(2, 15.75, 2, 'P002', 2);
-
--- Insertar datos de prueba en TelefonoProveedor
-INSERT INTO TelefonoProveedor (numeroPrincipal, numeroSecundario, observaciones, codigoProveedor) VALUES
-('5551234', '5555678', 'Teléfono principal de contacto', 1),
-('5558765', '5554321', 'Teléfono secundario de contacto', 2);
-
--- Insertar datos de prueba en EmailProveedor
-INSERT INTO EmailProveedor (emailProveedor, descripcion, codigoProveedor) VALUES
-('contacto@proveedorabc.com', 'Correo principal del proveedor ABC', 1),
-('info@proveedorxyz.com', 'Correo secundario del proveedor XYZ', 2);
-
--- Insertar datos de prueba en Factura
-INSERT INTO Factura (numeroFactura, estado, totalFactura, fechaFactura, clienteID, codigoEmpleado) VALUES
-(1, 'Pagada', 150.00, '2024-05-15', 1, 1),
-(2, 'Pendiente', 200.00, '2024-05-20', 2, 2);
-
--- Insertar datos de prueba en DetalleFactura
-INSERT INTO DetalleFactura (codigoDetalleFactura, precioUnitario, cantidad, numeroFactura, codigoProducto) VALUES
-(1, 50.00, 2, 1, 'P001'),
-(2, 30.00, 3, 2, 'P002');
-
-delimiter $$
-
-create trigger tr_PrecioProductos_After_Insert
-after insert on DetalleCompra
-for each row 
-begin
-    declare total decimal(10,2);
-    declare cantidad int;
-
-    set total = NEW.costoUnitario * NEW.cantidad;
-
-    update Productos
-    set precioUnitario = total * 0.40,
-        precioDocena  = total * 0.35 * 12,
-        precioMayor = total * 0.25
-    where Productos.codigoProducto = NEW.codigoProducto;
-
-    update Productos
-    set Productos.existencia = Productos.existencia - NEW.cantidad
-    where Productos.codigoProducto = NEW.codigoProducto;
-
-end $$
-delimiter ;
-
-delimiter $$
-
-create trigger tr_TotalDocumento_After_Insert
-after insert on DetalleCompra
-for each row
-begin
-    declare total decimal(10,2);
-
-    select sum(costoUnitario * cantidad) into total from DetalleCompra 
-    where numeroDocumento = NEW.numeroDocumento;
-
-    update Compras 
-        set totalDocumento = total 
-    where numeroDocumento = NEW.numeroDocumento;
-end $$
-delimiter ;
-
-delimiter $$
-
-create trigger tr_PrecioUnitario_After_Upd
-after update on DetalleCompra
-for each row
-begin
-
-    declare precioP decimal(10,2);
-
-    set precioP = (select precioUnitario from Productos where codigoProducto = NEW.codigoProducto);
-
-    update DetalleFactura
-    set DetalleFactura.precioUnitario = precioP
-    where DetalleFactura.codigoProducto = NEW.codigoProducto;
-end $$
-delimiter ;
+CALL sp_AgregarProveedor('1234567890', 'Proveedor1', 'Apellido1', 'Dirección 1', 'Razón Social 1', 'Contacto 1', 'www.proveedor1.com', '123456789', 'proveedor1@example.com');
+CALL sp_AgregarProveedor('9876543210', 'Proveedor2', 'Apellido2', 'Dirección 2', 'Razón Social 2', 'Contacto 2', 'www.proveedor2.com', '987654321', 'proveedor2@example.com');
+CALL sp_AgregarProveedor('6543210987', 'Proveedor3', 'Apellido3', 'Dirección 3', 'Razón Social 3', 'Contacto 3', 'www.proveedor3.com', '654321098', 'proveedor3@example.com');
+CALL sp_AgregarProveedor('3210987654', 'Proveedor4', 'Apellido4', 'Dirección 4', 'Razón Social 4', 'Contacto 4', 'www.proveedor4.com', '321098765', 'proveedor4@example.com');
+CALL sp_AgregarProveedor('0987654321', 'Proveedor5', 'Apellido5', 'Dirección 5', 'Razón Social 5', 'Contacto 5', 'www.proveedor5.com', '098765432', 'proveedor5@example.com');
 
 
-delimiter $$
 
-create trigger tr_TotalFactura_Aftr_U
-after update on DetalleFactura
-for each row
-begin
-    declare totalFactura decimal(10,2);
+CALL sp_AgregarCompra('2024-06-11', 'Compra 1', 100.00);
+CALL sp_AgregarCompra('2024-06-12', 'Compra 2', 200.00);
+CALL sp_AgregarCompra('2024-06-13', 'Compra 3', 300.00);
+CALL sp_AgregarCompra('2024-06-14', 'Compra 4', 400.00);
+CALL sp_AgregarCompra('2024-06-15', 'Compra 5', 500.00);
 
-    select sum(precioUnitario * cantidad) into totalFactura from DetalleFactura
-    where numeroFactura = NEW.numeroFactura;
+CALL sp_AgregarTipoProducto('Tipo 1');
+CALL sp_AgregarTipoProducto('Tipo 2');
+CALL sp_AgregarTipoProducto('Tipo 3');
+CALL sp_AgregarTipoProducto('Tipo 4');
+CALL sp_AgregarTipoProducto('Tipo 5');
 
-    update Factura
-        set Factura.totalFactura = totalFactura
-    where Factura.numeroFactura = NEW.numeroFactura;
-end $$
-delimiter ;
+CALL sp_AgregarCargoEmpleado('Cargo 1', 'Descripción 1');
+CALL sp_AgregarCargoEmpleado('Cargo 2', 'Descripción 2');
+CALL sp_AgregarCargoEmpleado('Cargo 3', 'Descripción 3');
+CALL sp_AgregarCargoEmpleado('Cargo 4', 'Descripción 4');
+CALL sp_AgregarCargoEmpleado('Cargo 5', 'Descripción 5');
 
+CALL sp_AgregarProducto('PROD001', 'Producto 1', 50.00, 45.00, 40.00, 100, 1, 1);
+CALL sp_AgregarProducto('PROD002', 'Producto 2', 60.00, 55.00, 50.00, 150, 2, 2);
+CALL sp_AgregarProducto('PROD003', 'Producto 3', 70.00, 65.00, 60.00, 200, 3, 3);
+CALL sp_AgregarProducto('PROD004', 'Producto 4', 80.00, 75.00, 70.00, 250, 4, 4);
+CALL sp_AgregarProducto('PROD005', 'Producto 5', 90.00, 85.00, 80.00, 300, 5, 5);
+
+CALL sp_AgregarEmpleado(1, 'Juan', 'Pérez', 2000.00, 'Calle 123', 'Mañana', 1);
+CALL sp_AgregarEmpleado(2, 'María', 'López', 2500.00, 'Avenida 456', 'Tarde', 2);
+CALL sp_AgregarEmpleado(3, 'Pedro', 'González', 2200.00, 'Calle 789', 'Noche', 3);
+CALL sp_AgregarEmpleado(4, 'Ana', 'Martínez', 2100.00, 'Carrera 456', 'Mañana', 4);
+CALL sp_AgregarEmpleado(5, 'Carlos', 'Sánchez', 2300.00, 'Avenida 789', 'Tarde', 5);
+
+CALL sp_agregarDetalleCompra(1, 10.00, 2, 'PROD001', 1);
+CALL sp_agregarDetalleCompra(2, 20.00, 3, 'PROD002', 2);
+CALL sp_agregarDetalleCompra(3, 30.00, 4, 'PROD003', 3);
+CALL sp_agregarDetalleCompra(4, 40.00, 5, 'PROD004', 4);
+CALL sp_agregarDetalleCompra(5, 50.00, 6, 'PROD005', 5);
+
+CALL sp_agregarTelefonoProveedor(1, '12345678', '87654321', 'Teléfono principal', 1);
+CALL sp_agregarTelefonoProveedor(2, '98765432', '23456789', 'Teléfono principal', 2);
+CALL sp_agregarTelefonoProveedor(3, '65432109', '65432109', 'Teléfono principal', 3);
+CALL sp_agregarTelefonoProveedor(4, '32109876', '32109876', 'Teléfono principal', 4);
+CALL sp_agregarTelefonoProveedor(5, '09876543', '09876543', 'Teléfono principal', 5);
+
+CALL sp_agregarEmailProveedor(1, 'proveedor1@example.com', 'Correo principal', 1);
+CALL sp_agregarEmailProveedor(2, 'proveedor2@example.com', 'Correo principal', 2);
+CALL sp_agregarEmailProveedor(3, 'proveedor3@example.com', 'Correo principal', 3);
+CALL sp_agregarEmailProveedor(4, 'proveedor4@example.com', 'Correo principal', 4);
+CALL sp_agregarEmailProveedor(5, 'proveedor5@example.com', 'Correo principal', 5);
+
+
+CALL sp_agregarFactura(1, 'Pagada', 1500.00, '2024-06-11', 1, 1);
+CALL sp_agregarFactura(2, 'Pendiente', 1800.00, '2024-06-11', 2, 2);
+CALL sp_agregarFactura(3, 'Pagada', 2000.00, '2024-06-11', 3, 3);
+CALL sp_agregarFactura(4, 'Pendiente', 2300.00, '2024-06-11', 4, 4);
+CALL sp_agregarFactura(5, 'Pagada', 2500.00, '2024-06-11', 5, 5);
+
+CALL sp_agregarDetalleFactura(1, 50.00, 2, 1, 'PROD001');
+CALL sp_agregarDetalleFactura(2, 60.00, 3, 2, 'PROD002');
+CALL sp_agregarDetalleFactura(3, 70.00, 4, 3, 'PROD003');
+CALL sp_agregarDetalleFactura(4, 80.00, 5, 4, 'PROD004');
+CALL sp_agregarDetalleFactura(5, 90.00, 6, 5, 'PROD005');
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pitudo37d*';
+flush privileges;
+
+select * from DetalleFactura
+	join Factura on DetalleFactura.numeroFactura = Factura.numeroFactura
+    join Clientes on Factura.clienteID = Clientes.clienteID
+    join Productos on DetalleFactura.codigoProducto = Productos.codigoProducto
+	where Factura.numeroFactura = 2;

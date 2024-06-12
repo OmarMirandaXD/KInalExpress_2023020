@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +23,7 @@ import javax.swing.JOptionPane;
 import org.ludwinxocoy.bean.CargoDeEmpleado;
 import org.ludwinxocoy.bean.Empleados;
 import org.ludwinxocoy.db.Conexion;
+import org.ludwinxocoy.reportes.GenerarReportes;
 import org.ludwinxocoy.system.Principal;
 
 public class MenuEmpleadoController implements Initializable {
@@ -339,10 +342,33 @@ public class MenuEmpleadoController implements Initializable {
         this.escenarioPrincipal = escenarioPrincipal;
     }
 
+   public void reporte(){
+        switch (tipoDeOperaciones) {
+            case NINGUNO:
+                imprimirReporte();
+                break;
+            case ACTUALIZAR:
+                desactivarControles();
+                limpiarControles();
+                btnEliminarEmpleado.setText("Editar");
+                btnReportesEmpleados.setText("Reportes");
+                btnAgregarEmpleado.setDisable(false);
+                btnEliminarEmpleado.setDisable(false);
+                tipoDeOperaciones = operaciones.NINGUNO;
+        }
+    }
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("codigoEmpleado", null);
+        GenerarReportes.mostrarReportesEmpleados("ReportesEmpleados.jasper", "reporte de Empleados", parametros);
+    }
+
     @FXML
     public void handleButtonAction(ActionEvent event) {
         if (event.getSource() == btnRegresar) {
             escenarioPrincipal.menuPrincipalView();
         }
     }
+
 }
+

@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import org.ludwinxocoy.bean.Clientes;
 import org.ludwinxocoy.db.Conexion;
+import org.ludwinxocoy.reportes.GenerarReportes;
 import org.ludwinxocoy.system.Principal;
 
 public class MenuClienteController implements Initializable {
@@ -306,6 +309,27 @@ public class MenuClienteController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public void reporte(){
+        switch (tipoDeOperaciones) {
+            case NINGUNO:
+                imprimirReporte();
+                break;
+            case ACTUALIZAR:
+                desactivarControles();
+                limpiarControles();
+                btnEliminarCliente.setText("Editar");
+                btnReportesClientes.setText("Reportes");
+                btnAgregarCliente.setDisable(false);
+                btnEliminarCliente.setDisable(false);
+                tipoDeOperaciones = operaciones.NINGUNO;
+        }
+    }
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("clienteID", null);
+        GenerarReportes.mostrarReportes("ReporteClientes.jasper", "reporte de Clientes", parametros);
     }
 
     @FXML

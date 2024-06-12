@@ -168,7 +168,7 @@
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
          </padding>
       </Button>
-      <Button fx:id="btnReportesClientes" layoutX="626.0" layoutY="258.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="106.0" style="-fx-background-color: #115122;" text="Reportes" textFill="WHITE">
+      <Button fx:id="btnReportesClientes" layoutX="626.0" layoutY="258.0" mnemonicParsing="false" onAction="#reporte" prefHeight="65.0" prefWidth="106.0" style="-fx-background-color: #115122;" text="Reportes" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>

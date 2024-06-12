@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportesEmpleados" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c73caff4-7370-4145-bc43-1c7ee3935524">
+	<property name="ireport.zoom" value="1.2100000000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="434"/>
+	<queryString>
+		<![CDATA[call sp_ListarEmpleados]]>
+	</queryString>
+	<field name="codigoEmpleado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombresEmpleado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidosEmpleado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sueldo" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoCargoEmpleado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="1414" height="802" uuid="b152dab2-d042-4ddf-8061-3fa0aa91617b"/>
+				<imageExpression><![CDATA["C:\\Users\\omarx\\OneDrive\\Escritorio\\KInalExpress_2023020-master\\src\\org\\ludwinxocoy\\images\\ReporteEmpleados (1).jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="140" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="47" splitType="Stretch">
+			<textField>
+				<reportElement x="88" y="13" width="116" height="20" uuid="fbfce720-bb31-4a13-b375-1f9d0986c0fb"/>
+				<textFieldExpression><![CDATA[$F{nombresEmpleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="13" width="100" height="20" uuid="9576d648-c021-47a5-80ce-ea91e716bdf9"/>
+				<textFieldExpression><![CDATA[$F{sueldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="13" width="100" height="20" uuid="5ba96915-3734-4bb6-b898-c71519f6f874"/>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="13" width="100" height="20" uuid="8366949a-a72c-418c-986c-3453e15f7a6b"/>
+				<textFieldExpression><![CDATA[$F{codigoEmpleado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

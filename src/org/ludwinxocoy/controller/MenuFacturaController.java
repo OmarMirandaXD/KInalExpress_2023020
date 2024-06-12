@@ -12,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javax.swing.JOptionPane;
 import org.ludwinxocoy.bean.*;
 import org.ludwinxocoy.db.Conexion;
+import org.ludwinxocoy.reportes.GenerarReportes;
 import org.ludwinxocoy.system.Principal;
 
 public class MenuFacturaController implements Initializable {
@@ -418,22 +421,28 @@ public class MenuFacturaController implements Initializable {
         }
     }
 
-  
-    public void reportes() {
+    public void reporte(){
         switch (tipoDeOperaciones) {
+            case NINGUNO:
+                imprimirReporte();
+                break;
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
-                btnEditar.setText("Editar");
-                btnReporte.setText("Reporte");
+                btnEliminar.setText("Editar");
+                btnReporte.setText("Reportes");
                 btnAgregar.setDisable(false);
                 btnEliminar.setDisable(false);
-
-                tipoDeOperaciones = operaciones.NINGUNO;
-                break;
+                tipoDeOperaciones = MenuFacturaController.operaciones.NINGUNO;
         }
     }
-
+    
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        int factID = ((Factura)tblFactura.getSelectionModel().getSelectedItem()).getNumeroFactura();
+        parametros.put("factID", factID);
+        GenerarReportes.mostrarReportesFactura("Reporte_Facturas.jasper", "reporte De Factura", parametros);
+    }
 
     @FXML
     public void handleButtonAction(ActionEvent event) {
